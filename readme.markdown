@@ -1,6 +1,6 @@
 # nimkernel
 
-This is a small 32bit (i586) written using the Nimrod programming language.
+This is a small 32bit (i586) kernel written using the Nimrod programming language.
 
 I have been wanting to do this for a while but it wasn't until people in the #nimrod IRC
 channel inquired about Nimrod OS dev and the
