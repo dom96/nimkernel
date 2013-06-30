@@ -44,11 +44,12 @@ _start:
 	# guards, no debugging mechanisms, there is nothing but what you build.
 
 	# By now, you are perhaps tired of assembly language. You realize some
-	# things simply cannot be done in C, such as making the multiboot header in
+	# things simply cannot be done in Nimrod, such as making the multiboot header in
 	# the right section and setting up the stack. However, you would like to
-	# write the operating system in a higher level language, such as C or C++.
+	# write the operating system in a higher level language, such as C or Nimrod.
 	# To that end, the next task is preparing the processor for execution of
-	# such code. C doesn't expect much at this point and we only need to set up
+	# such code. C and by extension Nimrod doesn't expect much at this point
+	# and we only need to set up
 	# a stack. Note that the processor is not fully initialized yet and stuff
 	# such as floating point instructions are not available yet.
 
@@ -56,9 +57,9 @@ _start:
 	# our stack (as it grows downwards).
 	movl $stack_top, %esp
 
-	# We are now ready to actually execute C code. We cannot embed that in an
-	# assembly file, so we'll create a kernel.c file in a moment. In that file,
-	# we'll create a C entry point called kernel_main and call it here.
+	# We are now ready to actually execute Nimrod code. We cannot embed that in an
+	# assembly file, so we'll create a main.nim file in a moment. In that file,
+	# we'll create a C entry point called kmain and call it here.
 	call kmain
 
 	# In case the function returns, we'll want to put the computer into an
