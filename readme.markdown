@@ -15,12 +15,15 @@ Nimkernel implements:
 * A ``writeString`` function which shows a string on screen in a specified
   position.
 * A ``rainbow`` function which shows a string with a rainbow-like text
-  background and foreground color differentiation in a specified position.
+  foreground color differentiation in a specified position.
 * Some simple error handling by implementing Nimrod system.nim's ``panic``
   function.
 * Support for 16 colors with a brilliant type safe API!
 
 ![](http://picheta.me/images/nimkernel2.png)
+
+**Note**: The error at the bottom is intentional, it is used to show that
+the error handling works properly.
 
 ## Setup
 

@@ -29,9 +29,9 @@ const
   VGAWidth* = 80
   VGAHeight* = 25
 
-proc makeColor*(fg: TVGAColor, bg: TVGAColor): TAttribute =
+proc makeColor*(bg: TVGAColor, fg: TVGAColor): TAttribute =
   ## Combines a foreground and background color into a ``TAttribute``.
-  return (ord(bg).uint8 or (ord(fg).uint8 shl 4)).TAttribute
+  return (ord(fg).uint8 or (ord(bg).uint8 shl 4)).TAttribute
 
 proc makeEntry*(c: char, color: TAttribute): TEntry =
   ## Combines a char and a *TAttribute* into a format which can be
@@ -48,8 +48,8 @@ proc writeChar*(vram: PVidMem, entry: TEntry, pos: TPos) =
 proc rainbow*(vram: PVidMem, text: string, pos: TPos) =
   ## Writes a string at the specified ``pos`` with varying colors which, despite
   ## the name of this function, do not resemble a rainbow.
-  var colorBG = Blue
-  var colorFG = DarkGrey
+  var colorBG = DarkGrey
+  var colorFG = Blue
   proc nextColor(color: TVGAColor, skip: set[TVGAColor]): TVGAColor =
     if color == White:
       result = Black  
@@ -58,9 +58,9 @@ proc rainbow*(vram: PVidMem, text: string, pos: TPos) =
     if result in skip: result = nextColor(result, skip)
   
   for i in 0 .. text.len-1:
-    colorBG = nextColor(colorBG, {Black, Cyan, DarkGrey, Magenta, Red,
+    colorFG = nextColor(colorFG, {Black, Cyan, DarkGrey, Magenta, Red,
                                   Blue, LightBlue, LightMagenta})
-    let attr = makeColor(colorFG, colorBG)
+    let attr = makeColor(colorBG, colorFG)
     
     vram.writeChar(makeEntry(text[i], attr), (pos.x+i, pos.y))
 

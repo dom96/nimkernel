@@ -1,6 +1,6 @@
 import ioutils
 type
-  TMultiboot_header{.pure, final.} = object
+  TMultiboot_header = object
   PMultiboot_header = ptr TMultiboot_header
 
 proc kmain(mb_header: PMultiboot_header, magic: int) {.exportc.} =
