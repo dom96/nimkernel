@@ -20,7 +20,7 @@ Nimkernel implements:
   function.
 * Support for 16 colors with a brilliant type safe API!
 
-![](http://picheta.me/images/nimkernel2.png)
+![](http://picheta.me/private/images/nimkernel2.png)
 
 **Note**: The error at the bottom is intentional, it is used to show that
 the error handling works properly.
