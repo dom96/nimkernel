@@ -1,13 +1,13 @@
 # nimkernel
 
-This is a small 32bit (i586) kernel written using the Nimrod programming language.
+This is a small 32bit (i586) kernel written using the Nim programming language.
 
-I have been wanting to do this for a while but it wasn't until people in the #nimrod IRC
-channel inquired about Nimrod OS dev and the
+I have been wanting to do this for a while but it wasn't until people in the #nim IRC
+channel inquired about Nim OS dev and the
 [rustboot](https://github.com/charliesome/rustboot) kernel inspired me that I finally did it.
 
 It doesn't do much, but it doesn't need to. Its purpose is to provide a starting
-point for anyone wishing to write an OS in Nimrod.
+point for anyone wishing to write an OS in Nim.
 
 It still manages to do a little more than fill a screen with a certain color.
 Nimkernel implements:
@@ -16,7 +16,7 @@ Nimkernel implements:
   position.
 * A ``rainbow`` function which shows a string with a rainbow-like text
   foreground color differentiation in a specified position.
-* Some simple error handling by implementing Nimrod system.nim's ``panic``
+* Some simple error handling by implementing Nim system.nim's ``panic``
   function.
 * Support for 16 colors with a brilliant type safe API!
 
@@ -31,8 +31,8 @@ You are required to have:
 
 * QEMU
 * a C and asm cross-compiler for i586
-* Nimrod from git HEAD
-* babel (*)
+* Nim from git HEAD
+* nimble (*)
 
 \* You can always grab the nake library manually from [here](https://github.com/fowlmouth/nake).
 
@@ -79,19 +79,19 @@ You should then add it to your PATH permanently or temporarily by doing:
 export PATH=$PATH:$PWD/build/bin
 ```
 
-#### Nimrod setup
+#### Nim setup
 
-Follow the instructions in the [Nimrod repo](https://github.com/Araq/nimrod) to bootstrap Nimrod and put it in your PATH.
+Follow the instructions in the [Nim repo](https://github.com/Araq/nim) to bootstrap Nim and put it in your PATH.
 
-Do the same for [babel](https://github.com/nimrod-code/babel) and install
-``nake`` by executing ``babel install nake`` or
+Do the same for [nimble](https://github.com/nim-lang/nimble) and install
+``nake`` by executing ``nimble install nake`` or
 alternatively just save [nake](https://github.com/fowlmouth/nake/raw/master/nake.nim)
 into the root dir of this repo.
 
 You can then compile the nakefile and therefore compile nimkernel:
 
 ```bash
-$ nimrod c nakefile
+$ nim c nakefile
 $ ./nakefile run
 ```
 
