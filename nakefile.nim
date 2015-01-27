@@ -13,13 +13,13 @@ task "clean", "Removes build files.":
 
 task "build", "Builds the operating system.":
   echo "Compiling..."
-  direShell "nimrod c -d:release --gcc.exe:$1 main.nim" % CC
+  direShell "nim c -d:release --gcc.exe:$1 main.nim" % CC
   
   direShell asmC, "boot.s -o boot.o"
   
   echo "Linking..."
   
-  direShell CC, "-T linker.ld -o main.bin -ffreestanding -O2 -nostdlib boot.o nimcache/main.o nimcache/system.o nimcache/unsigned.o nimcache/ioutils.o"
+  direShell CC, "-T linker.ld -o main.bin -ffreestanding -O2 -nostdlib boot.o nimcache/main.o nimcache/stdlib_system.o nimcache/stdlib_unsigned.o nimcache/ioutils.o"
   
   echo "Done."
   
