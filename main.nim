@@ -11,7 +11,8 @@ proc kmain(mb_header: PMultiboot_header, magic: int) {.exportc.} =
   screenClear(vram, Yellow) # Make the screen yellow.
   
   # Demonstration of error handling.
-  #var outOfBounds = vram[len(vram[])]
+  var x = len(vram[])
+  var outOfBounds = vram[x]
   
   let attr = makeColor(Yellow, DarkGrey)
   writeString(vram, "Nim", attr, (25, 9))

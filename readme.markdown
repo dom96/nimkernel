@@ -51,10 +51,10 @@ First ``cd`` into a suitable directory in which you would like to download, unzi
 and build the cross compiler. Then perform the following actions:
 
 ```bash
-$ wget ftp://sourceware.org/pub/binutils/snapshots/binutils-2.23.52.tar.bz2
-$ tar -xf binutils-2.23.52.tar.bz2
+$ wget ftp://sourceware.org/pub/binutils/snapshots/binutils-2.24.51.tar.bz2
+$ tar -xf binutils-2.24.51.tar.bz2
 $ mkdir build 
-$ ./binutils-2.23.52/configure --target=i586-elf --prefix=$PWD/build/ --disable-nls
+$ ./binutils-2.24.51/configure --target=i586-elf --prefix=$PWD/build/ --disable-nls
 $ make
 $ make install
 ```
@@ -65,9 +65,9 @@ not build for me, YMMV.
 You may then grab the GCC source and build it:
 
 ```bash
-$ wget ftp://ftp.gnu.org/gnu/gcc/gcc-4.8.1/gcc-4.8.1.tar.bz2
-$ tar -xf gcc-4.8.1.tar.bz2
-$ ./gcc-4.8.1/configure --target=i586-elf --prefix=$PWD/build/ --disable-nls --enable-languages=c --without-headers
+$ wget ftp://ftp.gnu.org/gnu/gcc/gcc-4.9.2/gcc-4.9.2.tar.bz2
+$ tar -xf gcc-4.9.2.tar.bz2
+$ ./gcc-4.9.2/configure --target=i586-elf --prefix=$PWD/build/ --disable-nls --enable-languages=c --without-headers
 $ make all-gcc
 $ make install-gcc
 ```
