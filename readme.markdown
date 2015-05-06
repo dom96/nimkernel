@@ -31,7 +31,7 @@ You are required to have:
 
 * QEMU
 * a C and asm cross-compiler for i586
-* Nim from git HEAD
+* Nim 0.10.2 or higher
 * nimble (*)
 
 \* You can always grab the nake library manually from [here](https://github.com/fowlmouth/nake).
@@ -53,9 +53,9 @@ and build the cross compiler. Then perform the following actions:
 ```bash
 $ wget ftp://sourceware.org/pub/binutils/snapshots/binutils-2.24.51.tar.bz2
 $ tar -xf binutils-2.24.51.tar.bz2
-$ mkdir build 
+$ mkdir build
 $ ./binutils-2.24.51/configure --target=i586-elf --prefix=$PWD/build/ --disable-nls
-$ make
+$ make -j4
 $ make install
 ```
 
@@ -68,7 +68,7 @@ You may then grab the GCC source and build it:
 $ wget ftp://ftp.gnu.org/gnu/gcc/gcc-4.9.2/gcc-4.9.2.tar.bz2
 $ tar -xf gcc-4.9.2.tar.bz2
 $ ./gcc-4.9.2/configure --target=i586-elf --prefix=$PWD/build/ --disable-nls --enable-languages=c --without-headers
-$ make all-gcc
+$ make all-gcc -j4
 $ make install-gcc
 ```
 
