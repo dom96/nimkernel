@@ -2,8 +2,8 @@ import nake
 import os
 
 const
-  CC = "i586-elf-gcc"
-  asmC = "i586-elf-as"
+  CC = "i686-elf-gcc"
+  asmC = "i686-elf-as"
 
 task "clean", "Removes build files.":
   removeFile("boot.o")
@@ -13,13 +13,13 @@ task "clean", "Removes build files.":
 
 task "build", "Builds the operating system.":
   echo "Compiling..."
-  direShell "nim c -d:release --gcc.exe:$1 main.nim" % CC
+  direShell "nim c -d:release --nimcache:nimcache --gcc.exe:$1 main.nim" % CC
   
   direShell asmC, "boot.s -o boot.o"
   
   echo "Linking..."
   
-  direShell CC, "-T linker.ld -o main.bin -ffreestanding -O2 -nostdlib boot.o nimcache/main.o nimcache/stdlib_system.o nimcache/stdlib_unsigned.o nimcache/ioutils.o"
+  direShell CC, "-T linker.ld -o main.bin -ffreestanding -O2 -nostdlib boot.o nimcache/@mmain.nim.c.o nimcache/stdlib_system.nim.c.o nimcache/@mioutils.nim.c.o -lgcc"
   
   echo "Done."
   

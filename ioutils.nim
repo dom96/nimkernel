@@ -1,4 +1,3 @@
-import unsigned
 type
   PVIDMem* = ptr array[0..65_000, TEntry]
 
