@@ -1,6 +1,6 @@
 # nimkernel
 
-This is a small 32bit (i586) kernel written using the Nim programming language.
+This is a small 32bit (i686) kernel written using the Nim programming language.
 
 I have been wanting to do this for a while but it wasn't until people in the #nim IRC
 channel inquired about Nim OS dev and the
@@ -30,8 +30,8 @@ the error handling works properly.
 You are required to have:
 
 * QEMU
-* a C and asm cross-compiler for i586
-* Nim 0.10.2 or higher
+* a C and asm cross-compiler for i686
+* Nim 1.6.0 or higher
 * nimble (*)
 
 \* You can always grab the nake library manually from [here](https://github.com/fowlmouth/nake).
@@ -51,33 +51,41 @@ First ``cd`` into a suitable directory in which you would like to download, unzi
 and build the cross compiler. Then perform the following actions:
 
 ```bash
-$ wget ftp://sourceware.org/pub/binutils/snapshots/binutils-2.24.51.tar.bz2
-$ tar -xf binutils-2.24.51.tar.bz2
-$ mkdir build
-$ ./binutils-2.24.51/configure --target=i586-elf --prefix=$PWD/build/ --disable-nls
-$ make -j4
+$ wget https://ftp.gnu.org/gnu/binutils/binutils-2.37.tar.xz
+$ tar -xJf binutils-2.37.tar.xz
+$ cd binutils-2.37
+$ mkdir build && cd build
+$ ../configure --target=i686-elf --prefix=$HOME/cross-tools/ --with-sysroot --disable-nls --disable-werror
+$ make -j$(nproc)
 $ make install
 ```
-
-Note: I did not use the binutils suggested by the osdev article as they did
-not build for me, YMMV.
 
 You may then grab the GCC source and build it:
 
 ```bash
-$ wget ftp://ftp.gnu.org/gnu/gcc/gcc-4.9.2/gcc-4.9.2.tar.bz2
-$ tar -xf gcc-4.9.2.tar.bz2
-$ ./gcc-4.9.2/configure --target=i586-elf --prefix=$PWD/build/ --disable-nls --enable-languages=c --without-headers
-$ make all-gcc -j4
+$ wget https://ftp.gnu.org/gnu/gcc/gcc-11.2.0/gcc-11.2.0.tar.xz
+$ tar -xJf gcc-11.2.0.tar.xz
+$ cd gcc-11.2.0
+$ mkdir build && cd build
+$ ../configure --target=i686-elf --prefix=$HOME/cross-tools/ --disable-nls --enable-languages=c --without-headers
+$ make all-gcc -j$(nproc)
+$ make all-target-libgcc -j$(nproc)
 $ make install-gcc
+$ make install-target-libgcc
 ```
 
-You should then have a i586-elf-gcc and i586-elf-as executable in $PWD/build/bin/ or somewhere thereabouts.
+You should then have a i686-elf-gcc and i686-elf-as executable in $HOME/cross-tools/bin/ or somewhere thereabouts.
 You should then add it to your PATH permanently or temporarily by doing:
 
 ```bash
-export PATH=$PATH:$PWD/build/bin
+export PATH=$PATH:$HOME/cross-tools/bin
 ```
+
+#### Downloading cross compiler binaries
+
+If for some reason you either can't or don't want to build your own toolchain you can grab binaries from [https://github.com/lordmilko/i686-elf-tools/releases](https://github.com/lordmilko/i686-elf-tools/releases)
+
+Please note that these are a bit outdated but they are confirmed to work.
 
 #### Nim setup
 
